@@ -1,3 +1,4 @@
+# frontend-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,15 +20,18 @@ spec:
           ports:
             - containerPort: {{ .Values.frontend.port }}
 ---
+# frontend-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
 spec:
+  type: {{ .Values.frontend.service.type | default "NodePort" }}
   selector:
     app: frontend
   ports:
-    - port: {{ .Values.frontend.port }}
+    - port: {{ .Values.frontend.service.port }}
       targetPort: {{ .Values.frontend.port }}
-      nodePort: 30080
-  type: NodePort
+      {{- if eq .Values.frontend.service.type "NodePort" }}
+      nodePort: {{ .Values.frontend.service.nodePort }}
+      {{- end }}

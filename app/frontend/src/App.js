@@ -10,7 +10,7 @@ function App() {
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState("");
 
-  const api = "http://backend:5000/notes";
+  const api = "http://127.0.0.1:30081/notes";
 
   useEffect(() => {
     axios

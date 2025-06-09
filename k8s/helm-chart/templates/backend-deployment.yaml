@@ -1,3 +1,4 @@
+# backend-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,14 +19,20 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: {{ .Values.backend.port }}
+
 ---
+# backend-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: backend
 spec:
+  type: {{ .Values.backend.service.type | default "ClusterIP" }}
   selector:
     app: backend
   ports:
-    - port: {{ .Values.backend.port }}
+    - port: {{ .Values.backend.service.port }}
       targetPort: {{ .Values.backend.port }}
+      {{- if eq .Values.backend.service.type "NodePort" }}
+      nodePort: {{ .Values.backend.service.nodePort }}
+      {{- end }}
