@@ -131,7 +131,15 @@ mongo:
 backend:
   image: local/backend:latest
   port: 5000
+  service:
+    type: NodePort
+    port: 5000
+    nodePort: 30081  # Exposes backend outside the cluster
 
 frontend:
   image: local/frontend:latest
   port: 3000
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30080  # Optional: expose frontend on fixed port
