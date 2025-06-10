@@ -27,9 +27,13 @@ A complete DevOps pipeline deployed locally using Minikube, featuring CI, GitOps
 ## 🌐 Live Stack Architecture (Local)
 
 Browser → Frontend (React)
+
 ↓
+
 Backend (Node.js + Express)
+
 ↓
+
 MongoDB (Local)
 
 
@@ -47,6 +51,8 @@ All services are containerized, deployed to Minikube via Helm, monitored by Prom
 - 💸 Zero cloud cost: Everything runs locally via Minikube
 
 ---
+<img width="1700" alt="image" src="https://github.com/user-attachments/assets/f057ed27-c549-48ac-a81e-87ee340f8779" />
+
 
 ## ✅ Setup Instructions
 
